@@ -1,0 +1,30 @@
+
+#include <stdio.h>
+
+int main(int argc, char *argv[])
+{
+    FILE *file = NULL;
+    int ch;
+
+    if (argc == 1) {
+        file = stdin;
+    }
+    else {
+        file = fopen(argv[1], "r");
+
+        if (file == NULL) {
+            printf("파일을 열 수 없습니다.\n");
+            return 1;
+        }
+    }
+
+    while ((ch = fgetc(file)) != EOF) {
+        fputc(ch, stdout);
+    }
+
+    if (file != stdin)
+        fclose(file);
+
+    return 0;
+}
+```
